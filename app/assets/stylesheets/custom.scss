@@ -1,0 +1,6 @@
+
+/******** 必須項目ラベルに「＊」印をつける ********/
+label.required:after {
+  content:" *";
+  color: red;
+}

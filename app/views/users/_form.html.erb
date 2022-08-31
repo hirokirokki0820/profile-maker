@@ -1,0 +1,20 @@
+<%= bootstrap_form_with(model: user) do |f| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :account_name %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.primary %>
+
+<% end %>
