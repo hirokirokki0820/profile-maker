@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :require_same_user, only: %i[ show edit update destroy ]
+  before_action :require_user, only: %i[ index ]
 
   # GET /users or /users.json
   def index
@@ -22,39 +24,28 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      log_in @user
+      redirect_to user_url(@user), notice: "新規ユーザーが作成されました"
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to user_url(@user), notice: "ユーザー情報が更新されました"
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    log_out if logged_in?
+    redirect_to root_path, notice: "アカウントが削除されました", status: :see_other
   end
 
   private
@@ -66,5 +57,11 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:account_name, :password, :password_confirmation)
+    end
+
+    def require_same_user
+      if current_user != @user
+        redirect_to root_path
+      end
     end
 end

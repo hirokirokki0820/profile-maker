@@ -2,14 +2,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <%#= link_to "QRコード de 宝探しゲーム", (logged_in? ? current_user : root_path), class: "navbar-brand" %>
-    <%= link_to "QR Treasure Hunt", (logged_in? ? current_user : root_path), class: "navbar-brand" %>
+    <%= link_to "Profile Maker", (logged_in? ? current_user : root_path), class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if logged_in? %>
-          <% if !current_user.guest? %>
             <li class="nav-item">
-              <%= link_to "新規イベント作成", new_post_path, class: "nav-link" %>
+              <%#= link_to "新規イベント作成", new_post_path, class: "nav-link" %>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -20,24 +19,16 @@
                 <li><%= link_to icon_with_text("gear","アカウント設定"), edit_user_path(current_user), class: "dropdown-item"%></li>
               </ul>
             </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to icon_with_text("person-circle","マイページ"), user_path(current_user), class: "nav-link" %></li>
-            </li>
-          <% end %>
           <!-- ログアウトボタン（モーダル表示） -->
           <li class="nav-item">
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><%= !current_user.guest? ? "ログアウト" : icon_with_text("box-arrow-right","退出する") %></a>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><%= icon_with_text("box-arrow-right","ログアウト") %></a>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "参加する(ゲストとしてログイン)", guest_login_path, class: "nav-link" %>
+            <%= link_to "アカウントを作成する", signup_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "イベントを作成する", host_user_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "主催者としてログイン", login_path, class: "nav-link" %>
+            <%= link_to "ログイン", login_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
@@ -55,21 +46,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <% if logged_in?%>
-        <% if !current_user.guest? %>
-          <div class="modal-body">
-            本当にログアウトしますか？
-          </div>
-        <% else %>
-          <div class="modal-body">
-            一度退出すると再ログインできません。<br>
-            景品交換前に退出されますと、<span class="text-danger">獲得した景品情報は全て失われるため景品交換ができなくなります。</span>
-            本当によろしいですか？
-          </div>
-        <% end %>
-
+        <div class="modal-body">
+          本当にログアウトしますか？
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
-          <%= button_to !current_user.guest? ? "ログアウト" : "退出する", logout_path, class: "btn btn-danger", method: :delete %>
+          <%= button_to "ログアウト", logout_path, class: "btn btn-danger", method: :delete %>
         </div>
       <% end %>
     </div>
