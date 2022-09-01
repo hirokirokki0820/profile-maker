@@ -1,0 +1,19 @@
+<%= bootstrap_form_with(model: post, class: "mb-5") do |f| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :title %>
+
+  <%= f.primary %>
+  <%= link_to "キャンセル", current_user , class: "btn btn-secondary"%>
+
+<% end %>

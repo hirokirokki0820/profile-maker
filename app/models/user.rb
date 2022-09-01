@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :name, :remember_token, :remember_me
+  has_many :posts, dependent: :destroy
   before_create :set_user_id
 
 # ユーザー名のバリデーション
