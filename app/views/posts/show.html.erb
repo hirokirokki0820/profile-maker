@@ -19,7 +19,7 @@
     <div id="eventURL" class="card-body my-2 mx-3 shadow-sm">
       <% if Rails.env.production? %>
         <%# # 本番環境 %>
-        <input type="text" onclick="this.select()" value="<%= "https://アプリ名.herokuapp.com#{post_path(@post)}" %>" class="form-control" readonly>
+        <input type="text" onclick="this.select()" value="<%= "https://profile-maker.herokuapp.com#{post_path(@post)}" %>" class="form-control" readonly>
       <% elsif Rails.env.development? %>
         <%# # 開発環境 %>
         <input type="text" onclick="this.select()" value="<%= "http://localhost:3000#{post_path(@post)}" %>" class="form-control" readonly>
