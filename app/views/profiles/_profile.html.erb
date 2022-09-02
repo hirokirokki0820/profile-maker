@@ -13,9 +13,9 @@
     <div class="col-6 px-2 my-2 text-center">
       <div class="bg-white my-2 py-2 rounded-5 profile__border" style="height: 180px">
         <% if profile.gender == '男' %>
-          <img src="/assets/profile_man.png" height="100%" alt="">
+          <%= image_tag "profile_man.png", height: "100%" %>
         <% else %>
-          <img src="/assets/profile_woman.png" height="100%" alt="">
+          <%= image_tag "profile_woman.png", height: "100%" %>
         <% end %>
       </div>
     </div>
