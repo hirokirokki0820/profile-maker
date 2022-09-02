@@ -1,2 +1,6 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% if !logged_in? %>
+  <div class="d-grid gap-2 my-5">
+    <%= link_to "新規アカウント作成", signup_path, class: "btn__basic__l btn__w80 btn__green mb-3" %>
+    <%= link_to "ログイン", login_path, class: "btn__basic__l btn__w80" %>
+  </div>
+<% end %>
