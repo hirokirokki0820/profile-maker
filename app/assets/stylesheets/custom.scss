@@ -11,7 +11,18 @@ h1 {
   margin-bottom: 20px;
 }
 
-/******** 必須項目ラベルに「＊」印をつける ********/
+/*************** イベントのスタイル ***************/
+// ラベルのフォントを太字にする
+.form-label {
+  font-weight: bold;
+}
+
+// のplaceholderの文字色
+.form-control::placeholder{
+  color: #ccc;
+}
+
+//必須項目ラベルに「＊」印をつける
 label.required:after {
   content:" *";
   color: red;
@@ -33,4 +44,175 @@ label.required:after {
   .navbar-toggler-icon{
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
   }
+}
+
+/********* プロフィールページのスタイル **********/
+.profile__bg{
+  // background-color: #ABDB77;
+  background-image: url("/assets/bg_green_dotted.jpeg")
+}
+
+.profile__font{
+  font-family: 'Kaisei Decol', serif;
+  color: #98923C;
+}
+
+.profile__font__name{
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+.profile__border{
+  border: 2px dotted #98923C;
+}
+
+#profile_table{
+  background-color: white;
+  border: 2px dotted #98923C;
+
+  tr{
+    border-bottom: 1px dotted #98923C;
+  }
+
+  th{
+    padding-left: 5px;
+    font-family: 'Kaisei Decol', serif;
+    color: #98923C;
+  }
+
+  td{
+    padding-left: 5px;
+    font-family: 'Yusei Magic', sans-serif;
+  }
+
+}
+
+.table_width_left{
+  width: 35%;
+}
+
+.table_width_right{
+  width: 65%;
+}
+
+/********* ボタンデザイン（Large, Medium） *********/
+// Largeボタン（ベーシック）
+.btn__basic__l{
+  margin: 0 auto;
+  font-size: 20px;
+  text-decoration: initial;
+  color: white;
+  font-weight: bold;
+  background-color: #888;
+  display: inline-block;
+  text-align: center;
+  height: 80px;
+  line-height: 80px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 0 #555;
+  transition:0.2s all;
+  &:hover{
+    text-decoration: initial;
+    color: white;
+    background-color: #555;
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+    box-shadow: none;
+
+  }
+}
+
+// ボタンの幅（80%）
+.btn__w80 {
+  width: 80%;
+}
+
+// mediumボタン（ベーシック）
+.btn__basic__m{
+  margin: 0 auto;
+  text-decoration: initial;
+  color: white;
+  font-weight: bold;
+  background-color: #888;
+  display: inline-block;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 0 #555;
+  transition:0.2s all;
+  &:hover{
+    text-decoration: initial;
+    color: white;
+    background-color: #555;
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px);
+    box-shadow: none;
+
+  }
+}
+
+// ボタンの配色（グリーン）
+.btn__green{
+  box-shadow:0 3px 0 0 #005400;
+
+  background: #0ba500; /* Old browsers */
+  background: -moz-linear-gradient(top,  #0ba500 0%, #008000 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #0ba500 0%,#008000 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #0ba500 0%,#008000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+// ボタンの配色（レッド）
+.btn__red{
+  box-shadow:0 3px 0 0 #8d0a0e;
+
+  background: #EE6E73; /* Old browsers */
+  background: -moz-linear-gradient(top,  #EE6E73 0%, #ff5c61 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #EE6E73 0%,#ff5c61 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #EE6E73 0%,#ff5c61 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.btn__orange{
+  box-shadow:0 3px 0 0 #b84c00;
+  background: #eb6100;
+  background: -moz-linear-gradient(top,  #eb6100 0%, #eb6100 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #eb6100 0%,#eb6100 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #eb6100 0%,#eb6100 100%);
+}
+
+
+
+/********* プロフィール印刷用のスタイル *********/
+@page {
+  size: A4 portrait;
+}
+
+@media print{
+	.no_print, .navbar{
+		display: none;
+	}
+
+  body {
+    margin-top: -60px;
+  }
+
+  #profiles {
+    -webkit-print-color-adjust: exact; /* 印刷時でも背景色や背景画像を表示 */
+    width: 500px; /* 印刷時の全ページ幅を統一（px数値はお好みで） */
+    zoom: 1.5; /* なるべく多くのブラウザで切れないようにするため */
+  }
+}
+
+// .pagebreak {
+//   // break-after: page;
+//   page-break-before: always;
+// }
+
+.profile__print{
+  page-break-after: always;
 }

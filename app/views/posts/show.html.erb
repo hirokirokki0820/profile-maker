@@ -1,10 +1,80 @@
-<p style="color: green"><%= notice %></p>
+<%#= render @post %>
+<% if logged_in? && (current_user == @post.user) %>
+  <div class="mb-3">
+    <%= link_to icon_with_text("box-arrow-in-left", "イベント一覧に戻る"), current_user, class: "" %>
+  </div>
+<% end %>
 
-<%= render @post %>
+<div class="mb-3">
+  <h2><%= @post.title %></h2>
+</div>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+<%#--- URL表示 ---%>
+<% if logged_in? && (current_user == @post.user) %>
+  <div class="card shadow mt-3 mb-5">
+    <div class="card-header">
+      <%= icon_with_text("globe", "このイベントのURL") %>
+    </div>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+    <div id="eventURL" class="card-body my-2 mx-3 shadow-sm">
+      <% if Rails.env.production? %>
+        <%# # 本番環境 %>
+        <input type="text" onclick="this.select()" value="<%= "https://アプリ名.herokuapp.com#{post_path(@post)}" %>" class="form-control" readonly>
+      <% elsif Rails.env.development? %>
+        <%# # 開発環境 %>
+        <input type="text" onclick="this.select()" value="<%= "http://localhost:3000#{post_path(@post)}" %>" class="form-control" readonly>
+      <% end %>
+    </div>
+    <p class="mx-3 text-success" style="font-size:0.8em">※上記URLをLINE等で皆にシェアしましょう。以降、このURLページにて各自のプロフィールを入力してもらいます。</p>
+  </div>
+<% end %>
+
+<%#--- プロフィール一覧 ---%>
+<div class="card shadow mt-3 mb-5">
+  <div class="card-header">
+    <%= icon_with_text("person-circle", "プロフィール一覧") %>
+  </div>
+
+  <div class="card-body mx-3">
+    <%= link_to icon_with_text("plus-circle", "追加"),
+                    new_post_profile_path(@post),
+                    class: "btn__basic__m btn__orange mb-3 mt-1 text-center"
+    %>
+    <div class="row py-2">
+      <div class="col-5 mt-auto fw-bold">
+        名前
+      </div>
+      <div class="col-3 mt-auto fw-bold">
+        性別
+      </div>
+      <div class="col-4 d-flex fw-bold justify-content-end">
+
+      </div>
+      <hr class="mt-2">
+    </div>
+    <div class="row">
+      <% @post.profiles.each do |profile| %>
+        <div class="col-5 mt-auto">
+          <%= link_to profile.name, post_profile_path(profile.post_id, profile.id) %>
+        </div>
+        <div class="col-3 mt-auto">
+          <%= profile.gender %>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+          <%= link_to icon_with_text("pencil-square", "編集"), edit_post_profile_path(profile.post_id, profile.id) , class: "btn btn-outline-primary mx-2", style: "font-size: 10px" %>
+          <%#= link_to icon("trash"), post , class: "btn btn-outline-danger", data: { turbo_method: :delete} %>
+        </div>
+        <hr class="mt-2" style="border: 1px solid #ccc">
+      <% end %>
+    </div>
+
+    <!-- <div class="d-flex justify-content-end mt-3">
+      <%#= paginate @cats %>
+    </div> -->
+  </div>
+</div>
+
+<%#--- プロフィール一覧表示・印刷ボタン ---%>
+<div class="mb-5 text-center">
+  <%= link_to icon_with_text("person-circle", "プロフィール一覧を表示"), post_profiles_path(@post), class: "btn__basic__l btn__w80 btn__green" %>
 </div>

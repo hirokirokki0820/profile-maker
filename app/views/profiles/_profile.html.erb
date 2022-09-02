@@ -1,0 +1,72 @@
+<div id="<%= dom_id profile %>" class="profile__bg container profile__print">
+  <div class="row mx-auto">
+    <div class="col-6 p-2  text-center">
+      <div class="m-2">
+        <h2 class="bg-white profile__font profile__border py-2">自己紹介</h2>
+      </div>
+      <div class="bg-white m-2 px-2 py-3 profile__border" style="height: 120px">
+        <h5 class="profile__font">名前</h5>
+        <h4 class="mt-3 profile__font__name"><%= profile.name %></h4>
+      </div>
+
+    </div>
+    <div class="col-6 px-2 my-2 text-center">
+      <div class="bg-white my-2 py-2 rounded-5 profile__border" style="height: 180px">
+        <% if profile.gender == '男' %>
+          <img src="/assets/profile_man.png" height="100%" alt="">
+        <% else %>
+          <img src="/assets/profile_woman.png" height="100%" alt="">
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto py-3 mb-5">
+    <table id="profile_table">
+      <tbody>
+        <tr>
+          <th class="table_width_left">生年月日</th>
+          <td class="table_width_right"><%= profile.birthday %></td>
+        </tr>
+        <tr>
+          <th>血液型</th>
+          <td><%= profile.blood_type %></td>
+        </tr>
+        <tr>
+          <th>性格</th>
+          <td><%= profile.personality %></td>
+        </tr>
+        <tr>
+          <th>趣味</th>
+          <td><%= profile.hobby %></td>
+        </tr>
+        <tr>
+          <th>特技</th>
+          <td><%= profile.speciality %></td>
+        </tr>
+        <tr>
+          <th><%= profile.post.question1 %></th>
+          <td><%= profile.answer1 %></td>
+        </tr>
+        <tr>
+          <th><%= profile.post.question2 %></th>
+          <td><%= profile.answer2 %></td>
+        </tr>
+        <tr>
+          <th><%= profile.post.question3 %></th>
+          <td><%= profile.answer3 %></td>
+        </tr>
+        <tr>
+          <th><%= profile.post.question4 %></th>
+          <td><%= profile.answer4 %></td>
+        </tr>
+        <tr>
+          <th><%= profile.post.question5 %></th>
+          <td><%= profile.answer5 %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

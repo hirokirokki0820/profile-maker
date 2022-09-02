@@ -2,11 +2,27 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      post: イベント
+      profile: プロフィール
     attributes:
       user:
-        id: ID
         account_name: アカウント名
         password: パスワード
         password_confirmation: パスワード(確認用)
         created_at: 作成日
         updated_at: 更新日
+      post:
+        title: 題名
+        question1: カスタム質問１
+        question2: カスタム質問２
+        question3: カスタム質問３
+        question4: カスタム質問４
+        question5: カスタム質問５
+      profile:
+        name: 名前
+        gender: 性別
+        birthday: 誕生日
+        blood_type: 血液型
+        personality: 性格
+        hobby: 趣味
+        speciality: 特技

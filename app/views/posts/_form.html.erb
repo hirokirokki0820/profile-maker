@@ -1,17 +1,12 @@
 <%= bootstrap_form_with(model: post, class: "mb-5") do |f| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.text_field :title %>
+  <%= f.text_field :title, placeholder: "50文字以内で入力してください" %>
+  <hr class="mt-4" style="border: 1px solid #ccc">
+  <%= f.text_field :question1, placeholder: "例）好きな食べ物" %>
+  <%= f.text_field :question2, placeholder: "例）好きな飲み物" %>
+  <%= f.text_field :question3, placeholder: "例）好きな映画・アニメ" %>
+  <%= f.text_field :question4, placeholder: "例）好きなアーティスト" %>
+  <%= f.text_field :question5, placeholder: "例）生まれ変わったら何になりたい?" %>
 
   <%= f.primary %>
   <%= link_to "キャンセル", current_user , class: "btn btn-secondary"%>

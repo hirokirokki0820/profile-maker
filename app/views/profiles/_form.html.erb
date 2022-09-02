@@ -1,0 +1,31 @@
+<%= bootstrap_form_with(model: [@post, @profile], local: true, class: "mb-5") do |f| %>
+
+  <%= f.text_field :name, placeholder: "名前（ニックネーム可）を10文字以内で入力してください" %>
+  <hr class="mt-4" style="border: 1px solid #ccc">
+  <%= f.select :gender, [["男性", "男"], ["女性", "女"]], {include_blank: '選択してください'} %>
+
+  <%= f.text_field :birthday, placeholder: "例）1988年8月20日" %>
+  <%= f.select :blood_type, [["A型", "A型"], ["B型", "B型"], ["AB型", "AB型"], ["O型", "O型"]], {include_blank: '選択してください'} %>
+  <%= f.text_field :personality, placeholder: "例）几帳面、マイペース、情熱的" %>
+  <%= f.text_field :hobby, placeholder: "例）登山、ドライブ、カフェ巡り" %>
+  <%= f.text_field :speciality, placeholder: "例）料理、スキー" %>
+  <% if !@post.question1.blank? %>
+    <%= f.text_field :answer1, label: @post.question1 %>
+  <% end %>
+  <% if !@post.question2.blank? %>
+    <%= f.text_field :answer2, label: @post.question2 %>
+  <% end %>
+  <% if !@post.question3.blank? %>
+    <%= f.text_field :answer3, label: @post.question3 %>
+  <% end %>
+  <% if !@post.question4.blank? %>
+    <%= f.text_field :answer4, label: @post.question4 %>
+  <% end %>
+  <% if !@post.question5.blank? %>
+    <%= f.text_field :answer5, label: @post.question5 %>
+  <% end %>
+
+  <%= f.primary %>
+  <%= link_to "キャンセル", @post, class: "btn btn-secondary"%>
+
+<% end %>

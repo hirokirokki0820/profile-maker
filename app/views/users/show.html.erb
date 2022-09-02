@@ -1,43 +1,38 @@
 <%#= render @user %>
 
 <div class="mb-3">
-  <h2><%= @user.account_name %>さんのフォーム一覧</h2>
+  <h2><%= @user.account_name %>さんのイベント一覧</h2>
 </div>
 
 <!-- 一覧 -->
 <div class="card shadow mt-3 mb-5">
   <div class="card-header">
-    <%= icon_with_text("table", "フォーム一覧") %>
+    <%= icon_with_text("table", "イベント一覧") %>
   </div>
 
   <div class="card-body mx-3">
-    <%= link_to icon_with_text("plus-circle", "フォームを追加"),
+    <%= link_to icon_with_text("plus-circle", "イベントを追加"),
                     new_post_path,
-                    class: "btn btn-primary mb-3 mt-1 d-block"
+                    class: "btn__basic__m btn__orange mb-3 mt-1 d-block"
     %>
     <div class="row py-2">
-      <div class="col-2 mt-auto fw-bold">
-        No.
-      </div>
       <div class="col-6 mt-auto fw-bold">
-        フォーム名
+        イベント名
       </div>
-      <div class="col-4 d-flex fw-bold justify-content-end">
+      <div class="col-6 d-flex fw-bold justify-content-end">
 
       </div>
       <hr class="mt-2">
     </div>
     <div class="row">
-      <% @user.posts.each_with_index do |post, index| %>
-        <div class="col-2 mt-auto">
-          <%= index + 1 %>
-        </div>
+      <% @user.posts.each do |post| %>
         <div class="col-6 mt-auto">
           <%= link_to post.title, post %>
         </div>
-        <div class="col-4 d-flex justify-content-end">
+
+        <div class="col-6 d-flex justify-content-end">
+          <%#= link_to icon_with_text("globe", "URL"), edit_post_path(post) , class: "btn btn-outline-success mx-2", style: "font-size: 10px" %>
           <%= link_to icon_with_text("pencil-square", "編集"), edit_post_path(post) , class: "btn btn-outline-primary mx-2" %>
-          <%#= link_to icon("trash"), post , class: "btn btn-outline-danger", data: { turbo_method: :delete} %>
         </div>
         <hr class="mt-2" style="border: 1px solid #ccc">
       <% end %>

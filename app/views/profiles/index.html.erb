@@ -1,0 +1,15 @@
+<div class="no_print mb-3">
+  <%= link_to icon_with_text("box-arrow-in-left", "プロフィール一覧に戻る"), @post %>
+</div>
+<% if logged_in? && (current_user == @post.user) %>
+  <div class="no_print text-center">
+    <a href="javascript:void(0)" class="btn__basic__l btn__w80 btn__green d-block mb-3" onclick="window.print();return false;"><%= icon_with_text("printer", "プロフィールを印刷する") %></a>
+    <p class="fw-bold text-danger" style="font-size: 0.8em">※倍率など細かな調整は印刷ダイアログにて行ってください。</p>
+  </div>
+<% end %>
+
+<div id="profiles">
+  <% @profiles.each do |profile| %>
+    <%= render profile %>
+  <% end %>
+</div>

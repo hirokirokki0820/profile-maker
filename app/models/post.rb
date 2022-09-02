@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   before_create :set_post_id
   belongs_to :user
+  has_many :profiles
 
   validates :title, presence: true, length: { maximum: 50 }
 
