@@ -194,7 +194,7 @@ label.required:after {
 }
 
 @media print{
-	.no_print, .navbar{
+	.no_print, .navbar, footer{
 		display: none;
 	}
 
