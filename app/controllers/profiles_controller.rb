@@ -25,8 +25,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.post = @post
     if @profile.save
-      redirect_to @profile.post
-      flash.now.notice = "景品が１件追加されました"
+      redirect_to post_profile_path(@profile.post_id, @profile.id), notice: "プロフィールが作成されました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,8 +34,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1 or /profiles/1.json
   def update
     if @profile.update(profile_params)
-      redirect_to post_profile_path(@profile.post_id, @profile.id), notice: "アイテムが更新されました"
-      flash.now.notice = "プロフィールが更新されました"
+      redirect_to post_profile_path(@profile.post_id, @profile.id), notice: "プロフィールが更新されました"
     else
       render :edit, status: :unprocessable_entity
     end
